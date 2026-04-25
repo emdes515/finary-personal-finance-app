@@ -1,7 +1,12 @@
 {
-  "name": "finary",
+  "name": "finary-personal-finance-app",
   "version": "0.1.0",
   "private": true,
+  "author": "emdes515",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emdes515/finary-personal-finance-app"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

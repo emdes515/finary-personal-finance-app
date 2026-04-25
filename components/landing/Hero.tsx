@@ -91,7 +91,7 @@ export default function Hero() {
             </span>
           </Link>
           <Link
-            href="https://github.com/mateuszjankowski/finary"
+            href="https://github.com/emdes515/finary-personal-finance-app"
             target="_blank"
             className="px-10 py-5 bg-surface-2 border border-border hover:border-accent/50 hover:bg-surface-3 text-text font-bold rounded-2xl transition-all hover:scale-105 active:scale-95 flex items-center gap-3 text-lg"
           >

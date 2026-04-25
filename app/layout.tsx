@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'Finary — AI Personal Finance Tracker',
-  description: 'AI-powered finance tracker built with Next.js 14, Zustand and OpenRouter.',
+  description: 'AI-powered finance tracker built with Next.js 16, Zustand and OpenRouter.',
 }
 
 export default function RootLayout({

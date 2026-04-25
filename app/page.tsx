@@ -49,14 +49,14 @@ export default function LandingPage() {
               <h4 className="font-display font-black text-sm uppercase tracking-widest mb-6">Developer</h4>
               <div className="flex flex-col gap-4">
                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-surface-3 border border-border overflow-hidden bg-[url('https://github.com/mateuszjankowski.png')] bg-cover bg-center" />
+                    <div className="w-12 h-12 rounded-2xl bg-surface-3 border border-border overflow-hidden bg-[url('/mateusz.jpg')] bg-cover bg-center" />
                     <div>
-                       <div className="text-sm font-black">Mateusz Jankowski</div>
+                       <div className="text-sm font-black">emdes515</div>
                        <div className="text-[10px] text-accent font-bold uppercase tracking-widest">Full-stack Dev</div>
                     </div>
                  </div>
-                 <Link href="https://github.com/mateuszjankowski" target="_blank" className="text-xs text-text-muted font-bold hover:text-white transition-colors">
-                    github.com/mateuszjankowski
+                 <Link href="https://github.com/emdes515" target="_blank" className="text-xs text-text-muted font-bold hover:text-white transition-colors">
+                    github.com/emdes515
                  </Link>
               </div>
            </div>
