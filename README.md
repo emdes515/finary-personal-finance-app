@@ -1,4 +1,4 @@
-# ◆ Finary — AI Personal Finance Tracker
+# ◆ Finary - AI Personal Finance Tracker
 
 > Full-stack personal finance app built in **Next.js 14 + TypeScript + Tailwind CSS** that turns everyday transactions into clear insights — with an **AI assistant powered by Llama 3.1 via OpenRouter** that gives personalized recommendations based on real financial data.
 
