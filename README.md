@@ -18,7 +18,7 @@
 
 <p align="center">
   <a href="https://finary-app.netlify.app/">
-    <img src="https://https://img.shields.io/badge/▶_Open_Live-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Open App">
+    <img src="https://img.shields.io/badge/▶_Open_Live-000000" alt="Open App">
   </a>
 </p>
 
