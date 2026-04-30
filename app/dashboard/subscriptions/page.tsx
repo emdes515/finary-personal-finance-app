@@ -126,11 +126,11 @@ export default function SubscriptionsPage() {
                <button 
                  onClick={() => {
                    const samples = [
-                     { name: 'Netflix', cost: 15.99, billingCycle: 'monthly', category: 'Entertainment' },
-                     { name: 'Spotify', cost: 9.99, billingCycle: 'monthly', category: 'Entertainment' },
-                     { name: 'ChatGPT Plus', cost: 20.00, billingCycle: 'monthly', category: 'Subscriptions' },
-                     { name: 'Gym', cost: 45.00, billingCycle: 'monthly', category: 'Health' }
-                   ]
+                     { name: 'Netflix', cost: 15.99, billingCycle: 'monthly', category: 'Entertainment', isFixed: true },
+                     { name: 'Spotify', cost: 9.99, billingCycle: 'monthly', category: 'Entertainment', isFixed: true },
+                     { name: 'ChatGPT Plus', cost: 20.00, billingCycle: 'monthly', category: 'Subscriptions', isFixed: true },
+                     { name: 'Gym', cost: 45.00, billingCycle: 'monthly', category: 'Health', isFixed: true }
+                   ] as const
                    samples.forEach(s => addSubscription({
                      ...s,
                      nextBillingDate: new Date().toISOString().split('T')[0]

@@ -53,6 +53,7 @@ export const generateSeedData = (): { transactions: Transaction[], budgets: Budg
       cost: config.cost,
       category: config.category,
       billingCycle: 'monthly',
+      isFixed: true,
       nextBillingDate: new Date(now.getFullYear(), now.getMonth(), 15).toISOString().split('T')[0]
     })
   })
