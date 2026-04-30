@@ -11,6 +11,16 @@ Track expenses, visualize spending patterns, set budgets and chat with your pers
 - 💾 **100% Private**: Data stays in your browser (localStorage).
 - 📱 **Mobile Optimized**: Fully responsive with bottom tab bar.
 
+## Previews
+
+<div align="center">
+  <img src="docs/dashboard.png" width="400" alt="Dashboard" />
+  <img src="docs/analytics.png" width="400" alt="Analytics" />
+  <br />
+  <img src="docs/ai-chat.png" width="400" alt="AI Chat" />
+  <img src="docs/mobile.png" width="400" alt="Mobile View" />
+</div>
+
 ## Tech Stack
 - **Framework**: Next.js 16 (App Router)
 - **State**: Zustand + Persist
