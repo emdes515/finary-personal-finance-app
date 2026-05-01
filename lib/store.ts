@@ -30,10 +30,10 @@ interface FinaryActions {
 export const useFinaryStore = create<FinaryState & FinaryActions>()(
   persist(
     (set, get) => ({
-      transactions: [],
-      budgets: [],
+      transactions: initialData.transactions,
+      budgets: initialData.budgets,
       goals: [],
-      subscriptions: [],
+      subscriptions: initialData.subscriptions,
       currentMonth: new Date().toISOString().slice(0, 7),
       settings: {
         currency: 'USD',
@@ -162,11 +162,6 @@ export const useFinaryStore = create<FinaryState & FinaryActions>()(
       },
 
       setCurrentMonth: (month) => set({ currentMonth: month }),
-
-      setOpenRouterKey: (key) =>
-        set((state) => ({
-          settings: { ...state.settings, openrouterKey: key },
-        })),
     }),
     {
       name: 'finary_data',

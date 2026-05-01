@@ -19,7 +19,8 @@ import {
   PolarGrid, 
   PolarAngleAxis, 
   Radar,
-  Cell
+  Cell,
+  LabelList
 } from 'recharts'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
@@ -203,6 +204,13 @@ export default function AnalyticsPage() {
                     contentStyle={{ backgroundColor: '#111111', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '12px' }}
                   />
                   <Bar dataKey="value" radius={[8, 8, 0, 0]}>
+                     <LabelList 
+                        dataKey="value" 
+                        position="top" 
+                        formatter={(val: number) => `$${val}`} 
+                        fill="#a1a1aa" 
+                        fontSize={12} 
+                     />
                      {categoryData.map((entry, index) => (
                        <Cell key={`cell-${index}`} fill={index === 0 ? '#7c3aed' : '#3b82f6'} />
                      ))}
