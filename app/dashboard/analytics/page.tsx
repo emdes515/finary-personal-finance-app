@@ -207,7 +207,7 @@ export default function AnalyticsPage() {
                      <LabelList 
                         dataKey="value" 
                         position="top" 
-                        formatter={(val: number) => `$${val}`} 
+                        formatter={(val: any) => `$${val}`} 
                         fill="#a1a1aa" 
                         fontSize={12} 
                      />

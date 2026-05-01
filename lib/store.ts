@@ -165,6 +165,7 @@ export const useFinaryStore = create<FinaryState & FinaryActions>()(
       },
 
       setCurrentMonth: (month) => set({ currentMonth: month }),
+      setOpenRouterKey: (key) => set((state) => ({ settings: { ...state.settings, openrouterKey: key } })),
     }),
     {
       name: 'finary_data',
