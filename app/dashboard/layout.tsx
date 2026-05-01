@@ -7,6 +7,8 @@ import { useFinaryStore } from '@/lib/store'
 import { generateSeedData } from '@/lib/seed'
 import { motion, AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
+import AddTransactionModal from '@/components/dashboard/AddTransactionModal'
+import MobileNav from '@/components/dashboard/MobileNav'
 
 export default function DashboardLayout({
   children,
@@ -16,9 +18,11 @@ export default function DashboardLayout({
   const pathname = usePathname()
   const transactions = useFinaryStore((state) => state.transactions)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   // Seed data if empty or corrupted
   useEffect(() => {
+    setIsMounted(true)
     const isTransactionsValid = Array.isArray(transactions) && transactions.length > 0
     const isBudgetsValid = Array.isArray(useFinaryStore.getState().budgets) && useFinaryStore.getState().budgets.length > 0
     
@@ -39,6 +43,8 @@ export default function DashboardLayout({
     if (!segment || segment === 'dashboard') return 'Dashboard'
     return segment.charAt(0).toUpperCase() + segment.slice(1)
   }
+
+  if (!isMounted) return <div className="min-h-screen bg-bg" />
 
   return (
     <div className="flex min-h-screen bg-bg">
@@ -70,6 +76,3 @@ export default function DashboardLayout({
     </div>
   )
 }
-
-import AddTransactionModal from '@/components/dashboard/AddTransactionModal'
-import MobileNav from '@/components/dashboard/MobileNav'

@@ -9,15 +9,20 @@ export function useAI() {
   const sendMessage = async (messages: any[], financialContext: any, onChunk: (chunk: string) => void) => {
     setLoading(true)
     try {
+      const { settings } = useFinaryStore.getState()
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages, financialContext }),
+        body: JSON.stringify({ 
+          messages, 
+          financialContext,
+          apiKey: settings?.openrouterKey 
+        }),
       })
 
       if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.error || 'Failed to send message')
+        const error = await response.json().catch(() => ({}))
+        throw new Error(error.error || `Failed to send message (${response.status})`)
       }
 
       const reader = response.body?.getReader()
@@ -25,22 +30,29 @@ export function useAI() {
 
       const decoder = new TextDecoder()
       let done = false
+      let buffer = ''
 
       while (!done) {
         const { value, done: doneReading } = await reader.read()
         done = doneReading
-        const chunkValue = decoder.decode(value)
-        
-        const lines = chunkValue.split('\n').filter(line => line.trim() !== '')
-        for (const line of lines) {
-          const message = line.replace(/^data: /, '')
-          if (message === '[DONE]') break
-          try {
-            const parsed = JSON.parse(message)
-            const content = parsed.choices[0]?.delta?.content || ''
-            if (content) onChunk(content)
-          } catch (e) {
-            // Not JSON or partial JSON
+        if (value) {
+          const chunkValue = decoder.decode(value, { stream: !doneReading })
+          buffer += chunkValue
+          
+          const lines = buffer.split('\n')
+          buffer = lines.pop() || ''
+          
+          for (const line of lines) {
+            if (line.trim() === '') continue
+            const message = line.replace(/^data: /, '')
+            if (message === '[DONE]') break
+            try {
+              const parsed = JSON.parse(message)
+              const content = parsed.choices[0]?.delta?.content || ''
+              if (content) onChunk(content)
+            } catch (e) {
+              // Not JSON or partial JSON
+            }
           }
         }
       }

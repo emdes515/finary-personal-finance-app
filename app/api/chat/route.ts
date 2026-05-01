@@ -4,11 +4,11 @@ export const runtime = 'edge'
 
 export async function POST(req: Request) {
   try {
-    const { messages, financialContext } = await req.json()
-    const apiKey = process.env.OPENROUTER_API_KEY
+    const { messages, financialContext, apiKey: customApiKey } = await req.json()
+    const apiKey = customApiKey || process.env.OPENROUTER_API_KEY
 
     if (!apiKey) {
-      return NextResponse.json({ error: 'OpenRouter API Key not configured in environment variables.' }, { status: 401 })
+      return NextResponse.json({ error: 'OpenRouter API Key not configured. Please add it in Settings.' }, { status: 401 })
     }
 
     const systemPrompt = `You are Finary, a personal finance AI assistant.
@@ -40,8 +40,8 @@ Current date: ${new Date().toISOString().split('T')[0]}`
     })
 
     if (!response.ok) {
-      const errorData = await response.json()
-      return NextResponse.json({ error: errorData.error?.message || 'OpenRouter API Error' }, { status: response.status })
+      const errorData = await response.json().catch(() => ({}))
+      return NextResponse.json({ error: errorData.error?.message || `OpenRouter API Error: ${response.status}` }, { status: response.status })
     }
 
     return new Response(response.body, {
