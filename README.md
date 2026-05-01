@@ -1,4 +1,4 @@
-# ◆ Finary — AI Personal Finance Tracker
+# ◆ Finary - AI Personal Finance Tracker
 
 > Full-stack personal finance app built in **Next.js 14 + TypeScript + Tailwind CSS** that turns everyday transactions into clear insights — with an **AI assistant powered by Llama 3.1 via OpenRouter** that gives personalized recommendations based on real financial data.
 
@@ -17,8 +17,8 @@
 ## 🔗 Live Demo
 
 <p align="center">
-  <a href="https://YOUR-FINARY-LIVE-URL.vercel.app">
-    <img src="https://img.shields.io/badge/▶_Open_Live_App-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Open App">
+  <a href="https://finary-app.netlify.app/">
+    <img src="https://img.shields.io/badge/▶_Open_Live-000000" alt="Open App">
   </a>
 </p>
 
