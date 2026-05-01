@@ -8,12 +8,10 @@ import { Send, Sparkles, User, Bot, Loader2 } from 'lucide-react'
 import { calculateKPIs } from '@/lib/calculations'
 
 export default function AIAssistantPage() {
-  const { transactions, budgets, goals, settings, setOpenRouterKey, currentMonth } = useFinaryStore()
+  const { transactions, budgets, goals, currentMonth } = useFinaryStore()
   
   const { sendMessage, loading } = useAI()
   const [input, setInput] = useState('')
-  const [keyInput, setKeyInput] = useState(settings.openrouterKey)
-  const [showKeyInput, setShowKeyInput] = useState(!settings.openrouterKey)
 
   const [messages, setMessages] = useState<any[]>([
     { 
@@ -30,17 +28,8 @@ export default function AIAssistantPage() {
     }
   }, [messages])
 
-  const handleSaveKey = () => {
-    setOpenRouterKey(keyInput)
-    setShowKeyInput(false)
-  }
-
   const handleSend = async (text: string = input) => {
     if (!text.trim() || loading) return
-    if (!settings.openrouterKey) {
-      setShowKeyInput(true)
-      return
-    }
 
     const userMessage = { role: 'user', content: text }
     setMessages(prev => [...prev, userMessage])
@@ -89,44 +78,7 @@ export default function AIAssistantPage() {
                <div className="text-[10px] text-accent font-bold uppercase tracking-widest">Powered by NVIDIA Nemotron</div>
             </div>
          </div>
-         <button 
-           onClick={() => setShowKeyInput(!showKeyInput)}
-           className="text-xs font-bold text-text-muted hover:text-accent transition-colors"
-         >
-            {settings.openrouterKey ? 'Update API Key' : 'Add API Key'}
-         </button>
       </div>
-
-      {/* Key Input Overlay */}
-      <AnimatePresence>
-        {showKeyInput && (
-          <motion.div 
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="bg-accent/5 border-b border-accent/20 overflow-hidden"
-          >
-            <div className="p-6 flex flex-col md:flex-row gap-4 items-end">
-              <div className="flex-1 space-y-2 w-full">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-accent">OpenRouter API Key</label>
-                <input 
-                  type="password"
-                  value={keyInput}
-                  onChange={(e) => setKeyInput(e.target.value)}
-                  placeholder="sk-or-v1-..."
-                  className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2 text-sm outline-none focus:border-accent"
-                />
-              </div>
-              <button 
-                onClick={handleSaveKey}
-                className="bg-accent text-white px-6 py-2 rounded-xl font-bold text-sm hover:brightness-110 transition-all w-full md:w-auto"
-              >
-                Save Key
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Messages */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 scroll-smooth">

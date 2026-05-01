@@ -45,7 +45,6 @@ export interface FinaryState {
   currentMonth: string
   settings: {
     currency: string
-    openrouterKey: string
   }
   toasts: { id: string, message: string, type: 'success' | 'error' | 'info' }[]
 }

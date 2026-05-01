@@ -4,11 +4,11 @@ export const runtime = 'edge'
 
 export async function POST(req: Request) {
   try {
-    const { messages, financialContext, userApiKey } = await req.json()
-    const apiKey = process.env.OPENROUTER_API_KEY || userApiKey
+    const { messages, financialContext } = await req.json()
+    const apiKey = process.env.OPENROUTER_API_KEY
 
     if (!apiKey) {
-      return NextResponse.json({ error: 'OpenRouter API Key not configured. Please add it in Settings.' }, { status: 401 })
+      return NextResponse.json({ error: 'OpenRouter API Key not configured in environment variables.' }, { status: 401 })
     }
 
     const systemPrompt = `You are Finary, a personal finance AI assistant.

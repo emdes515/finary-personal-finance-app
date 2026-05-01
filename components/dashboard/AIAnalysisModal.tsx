@@ -23,11 +23,6 @@ export default function AIAnalysisModal({ isOpen, onClose, type = 'general', con
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const handleGenerate = useCallback(async () => {
-    if (!settings.openrouterKey) {
-      setError('OpenRouter API Key not configured. Please add it in Settings.')
-      return
-    }
-
     setAnalysis('')
     setError(null)
     setHasAttempted(true)
@@ -63,7 +58,7 @@ export default function AIAnalysisModal({ isOpen, onClose, type = 'general', con
     } catch (err: any) {
       setError(err.message || 'Failed to generate analysis')
     }
-  }, [settings.openrouterKey, currentMonth, transactions, budgets, goals, context, type, sendMessage])
+  }, [currentMonth, transactions, budgets, goals, context, type, sendMessage])
 
   useEffect(() => {
     if (isOpen && !analysis && !hasAttempted && !loading && !error) {

@@ -5,7 +5,6 @@ import { useFinaryStore } from '@/lib/store'
 
 export function useAI() {
   const [loading, setLoading] = useState(false)
-  const userApiKey = useFinaryStore(state => state.settings.openrouterKey)
 
   const sendMessage = async (messages: any[], financialContext: any, onChunk: (chunk: string) => void) => {
     setLoading(true)
@@ -13,7 +12,7 @@ export function useAI() {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages, financialContext, userApiKey }),
+        body: JSON.stringify({ messages, financialContext }),
       })
 
       if (!response.ok) {
