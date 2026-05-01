@@ -2,6 +2,9 @@ import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { FinaryState, Transaction, Budget, Goal, Subscription } from './types'
 import { uuid } from './utils'
+import { generateSeedData } from './seed'
+
+const initialData = generateSeedData()
 
 interface FinaryActions {
   addTransaction: (t: Omit<Transaction, 'id' | 'createdAt'>) => void
@@ -165,6 +168,7 @@ export const useFinaryStore = create<FinaryState & FinaryActions>()(
     }),
     {
       name: 'finary_data',
+      version: 1,
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         transactions: state.transactions,
